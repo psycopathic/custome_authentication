@@ -4,25 +4,28 @@ import { CREATE_USERS_TABLE } from "./table";
 let pool: Pool;
 
 const connectToDatabase = async () => {
-  try {
-    pool = createPool({
-      port: Number(process.env.MYSQL_PORT) || 3306,
-      host: process.env.MYSQL_HOST || "localhost",
-      user: process.env.MYSQL_USER || "root",
-      password: process.env.MYSQL_PASSWORD || "",
-      database: process.env.MYSQL_DATABASE || "test",
+try {
+    console.log("DETAILS", {
+      port: +process!.env!.MYSQL_PORT!,
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
     });
 
-    // test connection
+    pool = createPool({
+      port: +process!.env!.MYSQL_PORT!,
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+    });
     await pool.getConnection();
-
-    // create users table
+    console.log("Connected to MySQL 🚀🚀");
     await pool.execute(CREATE_USERS_TABLE);
-
-    console.log("✅ Database connected successfully");
-    console.log("✅ Table 'users' created (if not exists).");
+    console.log("Table users created!");
   } catch (error) {
-    console.error("❌ Database connection failed:", error);
+    console.log("Error connecting to MySQL: ", error);
     throw error;
   }
 };
