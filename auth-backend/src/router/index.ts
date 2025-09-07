@@ -1,13 +1,13 @@
-import express from "express";
-import userRouter from "./user.js";
-import validationRouter from "./validation.js";
+import { Router } from "express";
+import usersRouter from "./user";
+import validationRouter from "./validation";
 
-const router = express.Router();
+const appRouter = Router();
 
-///api/v1/auth/user/* => userRouter
-///api/v1/auth/validate/* => validationRouter
+//api/v1/auth/user/* => usersRouter
+//api/v1/auth/validate/* => validationRouter
 
-router.use("/user", userRouter);
-router.use("/validate", validationRouter);
+appRouter.use("/user", usersRouter);
+appRouter.use("/validate", validationRouter);
 
-export default router;
+export default appRouter;
