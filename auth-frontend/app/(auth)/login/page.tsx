@@ -1,12 +1,12 @@
-import React from 'react';
+import { loginAction } from "@/app/actions/form-action";
+import AuthForm from "../AuthForm";
 
-const RegisterPage = () => {
+const Login = () => {
   return (
     <div>
-      <h1>Register Page</h1>
-      {/* Registration form elements would go here */}
+      <AuthForm isSignup={false} action={loginAction} />
     </div>
   );
 };
 
-export default RegisterPage;
+export default Login;
